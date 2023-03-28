@@ -1,14 +1,27 @@
-//testing call back functions
+const http  = require('http');
 
-function loop (callback){
-    for (let i=0;i<100;i++)
+const server =  http.createServer((req,res)=>{
+
+    if(req.url === '/' )
     {
-        console.log(i);
+        res.write("request succeded");
+        res.end();
     }
-    callback();
-}
-
-loop(()=>{
-    console.log("loop complete");
+    else{
+        res.write("looking for a non existant page");
+        res.end();
+    }
 });
+
+try
+{
+    server.listen(500000000)
+}catch(err)
+{
+    console.log("captured error : "+ err);
+}
+finally{
+    console.log("what shoul i do");
+} 
+
 
